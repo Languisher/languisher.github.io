@@ -7,22 +7,24 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
+        <meta name="author" content="Languisher">
       
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
       
-        <title>Languisher</title>
+        <title>Minimax 算法及其改进 - Languisher</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.7a7fce14.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7a7fce14.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -38,9 +40,9 @@
       
     
     
-      <link rel="stylesheet" href="/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,6 +70,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#minimax-minmax" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -78,7 +85,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Languisher" class="md-header__button md-logo" aria-label="Languisher" data-md-component="logo">
+    <a href="../.." title="Languisher" class="md-header__button md-logo" aria-label="Languisher" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -97,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Minimax 算法及其改进
             
           </span>
         </div>
@@ -182,7 +189,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/." class="md-tabs__link">
+    <a href="../.." class="md-tabs__link">
       主页
     </a>
   </li>
@@ -202,7 +209,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/Physics/Electrodynamics/C4-Electric-Fields-in-Matter/" class="md-tabs__link">
+      <a href="../../Physics/Electrodynamics/C4-Electric-Fields-in-Matter/" class="md-tabs__link">
         物理
       </a>
     </li>
@@ -225,7 +232,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/C/C1/" class="md-tabs__link">
+      <a href="../../C/C1/" class="md-tabs__link">
         软件
       </a>
     </li>
@@ -243,7 +250,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/Wireless-Sensing/DFA/" class="md-tabs__link">
+      <a href="../../Wireless-Sensing/DFA/" class="md-tabs__link">
         实验室
       </a>
     </li>
@@ -264,7 +271,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/Neovim/Nvim%20%2B%20Nvchad/" class="md-tabs__link">
+      <a href="../../Neovim/Nvim%20%2B%20Nvchad/" class="md-tabs__link">
         配置
       </a>
     </li>
@@ -294,7 +301,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Languisher" class="md-nav__button md-logo" aria-label="Languisher" data-md-component="logo">
+    <a href="../.." title="Languisher" class="md-nav__button md-logo" aria-label="Languisher" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -313,7 +320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         主页
       </a>
     </li>
@@ -382,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Physics/Electrodynamics/C4-Electric-Fields-in-Matter/" class="md-nav__link">
+      <a href="../../Physics/Electrodynamics/C4-Electric-Fields-in-Matter/" class="md-nav__link">
         4. Electric Fields in Matter
       </a>
     </li>
@@ -430,7 +437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Physics/QuantumMechanics/C3/" class="md-nav__link">
+      <a href="../../Physics/QuantumMechanics/C3/" class="md-nav__link">
         3. General Formalism
       </a>
     </li>
@@ -513,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/C/C1/" class="md-nav__link">
+      <a href="../../C/C1/" class="md-nav__link">
         C 语言基础
       </a>
     </li>
@@ -527,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/C/C2/" class="md-nav__link">
+      <a href="../../C/C2/" class="md-nav__link">
         指针
       </a>
     </li>
@@ -541,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/C/C4/" class="md-nav__link">
+      <a href="../../C/C4/" class="md-nav__link">
         结构和联合
       </a>
     </li>
@@ -589,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/DataStructure/Stacks-and-Queues/" class="md-nav__link">
+      <a href="../../DataStructure/Stacks-and-Queues/" class="md-nav__link">
         栈和队列
       </a>
     </li>
@@ -645,7 +652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Wireless-Sensing/DFA/" class="md-nav__link">
+      <a href="../../Wireless-Sensing/DFA/" class="md-nav__link">
         介质谐振器天线 Dielectric Resonator Antennas
       </a>
     </li>
@@ -721,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Neovim/Nvim%20%2B%20Nvchad/" class="md-nav__link">
+      <a href="../../Neovim/Nvim%20%2B%20Nvchad/" class="md-nav__link">
         Neovim 配置（一）：基本设置和初始化
       </a>
     </li>
@@ -735,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Neovim/Nvim%20%2B%20Luasnip/" class="md-nav__link">
+      <a href="../../Neovim/Nvim%20%2B%20Luasnip/" class="md-nav__link">
         Neovim 配置（二）：LaTeX + Snippet
       </a>
     </li>
@@ -783,7 +790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/Neovim/Terminal/" class="md-nav__link">
+      <a href="../../Neovim/Terminal/" class="md-nav__link">
         配置 Mac 终端
       </a>
     </li>
@@ -821,6 +828,97 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#situation" class="md-nav__link">
+    Situation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minmax-basique" class="md-nav__link">
+    Minmax (Basique)
+  </a>
+  
+    <nav class="md-nav" aria-label="Minmax (Basique)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe" class="md-nav__link">
+    Principe
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    Problem
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minmax-alpha-beta" class="md-nav__link">
+    Minmax \(\alpha-\beta\)
+  </a>
+  
+    <nav class="md-nav" aria-label="Minmax \(\alpha-\beta\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe_1" class="md-nav__link">
+    Principe
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monte-carlo-tree-search" class="md-nav__link">
+    Monte Carlo Tree Search
+  </a>
+  
+    <nav class="md-nav" aria-label="Monte Carlo Tree Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe_2" class="md-nav__link">
+    Principe
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -832,8 +930,192 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+<h1 id="minimax-minmax">Minimax (Minmax)</h1>
+<p>The minimax algorithm (also called the MinMax algorithm) is an algorithm that applies to game theory for two-player zero-sum games.</p>
+<h2 id="situation">Situation</h2>
+<ul>
+<li>Deux joueurs <span class="arithmatex">\(I\)</span> (Vous) et <span class="arithmatex">\(P\)</span> (Votre adversaire).</li>
+<li>Un "score" <span class="arithmatex">\(s\)</span> décrit le jeu, le but pour  <span class="arithmatex">\(I\)</span> est de maximer <span class="arithmatex">\(s\)</span>, et celui de <span class="arithmatex">\(P\)</span> est de le minimiser.</li>
+<li><span class="arithmatex">\(s = \{+\infty\}\)</span> représente <span class="arithmatex">\(I\)</span> a gagné, <span class="arithmatex">\(s = \{-\infty\}\)</span> représente <span class="arithmatex">\(P\)</span> a gagné.</li>
+</ul>
+<h2 id="minmax-basique">Minmax (Basique)</h2>
+<h3 id="principe">Principe</h3>
+<ul>
+<li>
+<p>Initialisation :</p>
+<ul>
+<li>On descend jusqu'à une profondeur <span class="arithmatex">\(p\)</span> de l'arbre.</li>
+</ul>
+</li>
+<li>
+<p>Rechercher tous les cas possibles :</p>
+<ul>
+<li>Partir d'une profondeur <span class="arithmatex">\(p\)</span> de l'arbre, puis on remontre.</li>
+<li>Lorsque on remontre une profondeur, <ul>
+<li><span class="arithmatex">\(I\)</span> va choisir entre les fils le plus grand nombre. </li>
+<li><span class="arithmatex">\(P\)</span> va choisir entre les fils le plus petit nombre.</li>
+</ul>
+</li>
+<li>Lorsque tous les fils sont calculés, on obtient un valeur final pour cette noeude de profondeur <span class="arithmatex">\(p-1\)</span>, on remontre encore une fois.</li>
+<li>Ces étapes sont répétées jusqu'à on obtient le valeur de la racine, ensuite on initialise par descendre jusqu'à autres noeuds à une profondeur <span class="arithmatex">\(p\)</span>.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>function minimax(node, depth, maximizingPlayer) is
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    if depth = 0 or node is a terminal node then
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        return the heuristic value of node
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    if maximizingPlayer then
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        value := −∞
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        for each child of node do
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>            value := max(value, minimax(child, depth − 1, FALSE))
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        return value
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    else (* minimizing player *)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        value := +∞
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        for each child of node do
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            value := min(value, minimax(child, depth − 1, TRUE))
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        return value
+</code></pre></div>
+<blockquote>
+<p>Exemple : <a href="https://upload.wikimedia.org/wikipedia/commons/e/e1/Plminmax.gif">Minimax-gif</a>
+<img alt="" src="/files/minimax1.png" /> </p>
+</blockquote>
+<h3 id="problem">Problem</h3>
+<p>Souvent, on rencontre des cas lorsque on a tant de calculation. On doit rejeter des solutions moins intéressantes.</p>
+<p>On peut limiter le nombre de profondeur, ou adopter les autres algorithms optimisés.</p>
+<h2 id="minmax-alpha-beta">Minmax <span class="arithmatex">\(\alpha-\beta\)</span></h2>
+<h3 id="principe_1">Principe</h3>
+<ul>
+<li>Qui ne sont pas nécessaires ?<ul>
+<li><span class="arithmatex">\(\text{Max}\)</span> 目前根节点值假设是 <span class="arithmatex">\(3\)</span>，当我们向前遍历的时候，发现 <span class="arithmatex">\(\text{Max}\)</span> 的某子节点值小于 <span class="arithmatex">\(3\)</span>（假设是 <span class="arithmatex">\(1\)</span>），那我们就知道 <span class="arithmatex">\(\text{Min}\)</span> 最终选择的值肯定小于 <span class="arithmatex">\(3\)</span>，这意味着这条路一定不会成为最终最理想的路。</li>
+<li>同理，对于 <span class="arithmatex">\(\text{Min}\)</span>，<span class="arithmatex">\(\text{Min}\)</span> 的子节点大于根节点时，<span class="arithmatex">\(\text{Max}\)</span> 一定会选择值大于根节点值的路，这意味着剩下的子节点可以全部忽略不看。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Exemple : <img alt="" src="/files/minimax2.jpeg" /></p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>function alphabeta(node, depth, α, β, maximizingPlayer) is
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    if depth == 0 or node is terminal then
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        return the heuristic value of node
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    if maximizingPlayer then
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        value := −∞
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        for each child of node do
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>            value := max(value, alphabeta(child, depth − 1, α, β, FALSE))
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>            if value &gt; β then
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>                break (* β cutoff *)
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>            α := max(α, value)
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        return value
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    else
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        value := +∞
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        for each child of node do
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>            value := min(value, alphabeta(child, depth − 1, α, β, TRUE))
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>            if value &lt; α then
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>                break (* α cutoff *)
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>            β := min(β, value)
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        return value
+</code></pre></div>
+<h2 id="monte-carlo-tree-search">Monte Carlo Tree Search</h2>
+<h3 id="principe_2">Principe</h3>
+<ul>
+<li>节点统计：<ul>
+<li>模拟总回报，经过该节点的所有模拟结果的汇总</li>
+<li>访问总次数</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/MCTS-steps.svg/1600px-MCTS-steps.svg.png" /></p>
+<ul>
+<li>
+<p>算法由 4 个部分组成：</p>
+<ul>
+<li>Selection<ul>
+<li>我们找到目前认为「最有可能会走到的」一个未被评估的局面（双方都很聪明的情况下），并且选择它。</li>
+<li>节点的类别：<ul>
+<li>访问过的节点：已有一次模拟从那个节点开始</li>
+<li>完全展开的节点：一个节点的所有子节点都是访问过的节点</li>
+<li>未完全展开的节点：一个节点的部分子节点没有被访问过</li>
+</ul>
+</li>
+<li>Exploration + Exploitation，不仅只看节点的胜率，在搜索前期多探索新的可能性</li>
+<li>UCT (Upper Confidence Bound applied to trees)
+    <script type="math/tex; mode=display">
+    \text{UCT}(v_i, v) = \frac{Q(v_i)}{N(v_i)} + c \sqrt{\frac{\log(N(v))}{N(v_i)}} 
+    .</script>
+</li>
+</ul>
+</li>
+<li>
+<p>Expansion</p>
+<ul>
+<li>刚刚选择的节点加上一个 [0/0] 节点信息的节点，进入下一步模拟</li>
+</ul>
+</li>
+<li>
+<p>Simulation 模拟/推演</p>
+<ul>
+<li>定义：从当前节点开始，到可以计算出博弈结果的终止节点的一系列行动</li>
+<li>在模拟的过程中，每一步的下一步都由 <span class="arithmatex">\(\text{RolloutPolicy}\)</span> 函数选择，默认是一个均匀分布的随机数生成函数</li>
+<li>记录这个节点以及它的子节点模拟的次数和赢的次数</li>
+</ul>
+</li>
+<li>
+<p>Backpropagation</p>
+<ul>
+<li>一旦一个刚刚访问的节点的模拟过程结成，模拟结果就可以向后传播到博弈树的根节点，这个节点改标记为访问过的节点。</li>
+<li>目的：更新路径上的所有节点的节点统计</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>SELECTION</p>
+<p>The idea is to keep selecting best child nodes until we reach the leaf node of the tree. A good way to select such a child node is to use UCT (Upper Confidence Bound applied to trees) formula:</p>
+<div class="highlight"><pre><span></span><code>wi/ni + c*sqrt(t)/ni
+</code></pre></div>
+<p>wi = number of wins after the i-th move
+ni = number of simulations after the i-th move
+c = exploration parameter (theoretically equal to √2)
+t = total number of simulations for the parent node</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">monte_carlo_tree_search</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">while</span> <span class="n">resources_left</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">computational</span> <span class="n">power</span><span class="p">):</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="n">leaf</span> <span class="o">=</span> <span class="n">traverse</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="c1"># leaf = unvisited node </span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="n">simulation_result</span> <span class="o">=</span> <span class="n">rollout</span><span class="p">(</span><span class="n">leaf</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="n">backpropagate</span><span class="p">(</span><span class="n">leaf</span><span class="p">,</span> <span class="n">simulation_result</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">return</span> <span class="n">best_child</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">while</span> <span class="n">fully_expanded</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="n">node</span> <span class="o">=</span> <span class="n">best_uct</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="k">return</span> <span class="n">pick_unvisited</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">)</span> <span class="ow">or</span> <span class="n">node</span> <span class="c1"># in case no children are present / node is terminal </span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="k">def</span> <span class="nf">rollout</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="k">while</span> <span class="n">non_terminal</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="n">node</span> <span class="o">=</span> <span class="n">rollout_policy</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="k">return</span> <span class="n">result</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> 
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="k">def</span> <span class="nf">best_child</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="n">pick</span> <span class="n">child</span> <span class="k">with</span> <span class="n">highest</span> <span class="n">number</span> <span class="n">of</span> <span class="n">visits</span>
+</code></pre></div>
+<ul>
+<li>一般来说最佳走法就是具有最高访问次数的节点</li>
+<li>可以通过设置一个最长时间限制，使其停止计算</li>
+</ul>
+<h2 id="references">References</h2>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Minimax">Minimax Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Alpha–beta_pruning">Alpha-beta pruning Wikipedia</a></li>
+<li><a href="https://blog.51cto.com/u_15060462/2684231?articleABtest=1">AlphaGo制胜绝招：蒙特卡洛树搜索入门指南</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/53948964">蒙特卡洛树搜索最通俗入门指南</a></li>
+</ol>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -892,10 +1174,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "naviagation.sections", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "/assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "naviagation.sections", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.407015b8.min.js"></script>
+      <script src="../../assets/javascripts/bundle.407015b8.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       

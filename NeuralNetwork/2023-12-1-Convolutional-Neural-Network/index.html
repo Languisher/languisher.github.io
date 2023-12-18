@@ -1,0 +1,1337 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Languisher">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
+    
+    
+      
+        <title>卷积神经网络 - Languisher</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7a7fce14.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#convolutional-network" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Languisher" class="md-header__button md-logo" aria-label="Languisher" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Languisher
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              卷积神经网络
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      主页
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Physics/Electrodynamics/C4-Electric-Fields-in-Matter/" class="md-tabs__link">
+        物理
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../C/C1/" class="md-tabs__link">
+        软件
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Wireless-Sensing/DFA/" class="md-tabs__link">
+        实验室
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Neovim/Nvim%20%2B%20Nvchad/" class="md-tabs__link">
+        配置
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Languisher" class="md-nav__button md-logo" aria-label="Languisher" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Languisher
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        主页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          物理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          物理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+          电磁学
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          电磁学
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Physics/Electrodynamics/C4-Electric-Fields-in-Matter/" class="md-nav__link">
+        4. Electric Fields in Matter
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          量子力学
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          量子力学
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Physics/QuantumMechanics/C3/" class="md-nav__link">
+        3. General Formalism
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          软件
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          软件
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+          C 和 C++
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          C 和 C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/C1/" class="md-nav__link">
+        C 语言基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/C2/" class="md-nav__link">
+        指针
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../C/C4/" class="md-nav__link">
+        结构和联合
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          数据结构
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          数据结构
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DataStructure/Stacks-and-Queues/" class="md-nav__link">
+        栈和队列
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          实验室
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          实验室
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Wireless-Sensing/DFA/" class="md-nav__link">
+        介质谐振器天线 Dielectric Resonator Antennas
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          配置
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          配置
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+          Neovim
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Neovim
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Neovim/Nvim%20%2B%20Nvchad/" class="md-nav__link">
+        Neovim 配置（一）：基本设置和初始化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Neovim/Nvim%20%2B%20Luasnip/" class="md-nav__link">
+        Neovim 配置（二）：LaTeX + Snippet
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+          Terminal
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Terminal
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Neovim/Terminal/" class="md-nav__link">
+        配置 Mac 终端
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#convolution-operation-and-cross-correlation" class="md-nav__link">
+    Convolution operation and cross-correlation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motivations" class="md-nav__link">
+    Motivations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#process" class="md-nav__link">
+    Process
+  </a>
+  
+    <nav class="md-nav" aria-label="Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convolution" class="md-nav__link">
+    Convolution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pooling" class="md-nav__link">
+    Pooling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirements-for-the-task" class="md-nav__link">
+    Requirements for the task
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#improvements-from-convolutional-operations-in-math" class="md-nav__link">
+    Improvements from convolutional operations in math
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resnet" class="md-nav__link">
+    ResNet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-with-neural-science" class="md-nav__link">
+    Relationship with Neural Science
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="convolutional-network">Convolutional Network</h1>
+<p><img alt="" src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*vkQ0hXDaQv57sALXAJquxA.jpeg" /></p>
+<h2 id="convolution-operation-and-cross-correlation">Convolution operation and cross-correlation</h2>
+<ul>
+<li>
+<p><strong>Convolution operation</strong>: To predict the position of a special object <span class="arithmatex">\(x=x(t)\)</span>, we do an average to the measurements in a period of time. The more recent the measurement is, the more weight it is given. Therefore, we obtain a smooth estimating function <span class="arithmatex">\(s=s(t)\)</span>: 
+    <script type="math/tex; mode=display">
+    s(t) = \int x(a) w(t-a)\, \mathrm{d}a =(x*w)(t)
+    </script>
+</p>
+<ul>
+<li>Only in our example, <span class="arithmatex">\(w\)</span> is an effective <a href="https://en.wikipedia.org/wiki/Probability_density_function">probability density function</a>, and <span class="arithmatex">\(w(x&lt;0)=0\)</span>.</li>
+<li><span class="arithmatex">\(x\)</span> is the <strong>input</strong>, <span class="arithmatex">\(w\)</span> is the <strong>kernel function</strong>, and <span class="arithmatex">\(f\)</span> is refered to as <strong>feature map</strong>.</li>
+</ul>
+</li>
+<li>
+<p>A <em>discrete version</em> of the operation could be written as: 
+    <script type="math/tex; mode=display">
+    s(t) = (x*w)(t) = \sum_{a=-\infty}^{+\infty} x(a)w(t-a)
+    </script>
+</p>
+</li>
+<li>
+<p>For a two dimensional figure <span class="arithmatex">\(I\)</span>, using a two-dimensional kernel <span class="arithmatex">\(K\)</span>, the equivalent form is: 
+    <script type="math/tex; mode=display">
+    \begin{align}
+    S(i,j) = (I*K)(i,j) &= \sum_{m}\sum_{n}I(m,n)K(i-m,i-n) \\=(K*I)(i,j)&= \sum_{m}\sum_{n}I(i-m,j-n)K(m,n)
+    \end{align}
+    </script>
+</p>
+</li>
+<li>
+<p><strong>Convolution</strong> is a linear operation, so it can be expressed in the form of matrix multiplication (if we first transform the input tensor into a flat vector). The matrix contained in it is a function of the convolution kernel. This matrix is sparse and each element of the kernel is copied to multiple elements of the matrix.</p>
+</li>
+<li>
+<p>However, the <strong>cross-correlation</strong> is more often used in most nets:
+    <script type="math/tex; mode=display">
+    S(i,j) = (I*K)(i,j) = \sum_{m}\sum_{n}I(i+m,j+n)K(m,n)
+    </script>
+</p>
+<ul>
+<li>
+<p>Convolution = Cross-correlation + flipping the kernel</p>
+<ul>
+<li>Example of kernel flipping:
+    <script type="math/tex; mode=display">
+    \begin{bmatrix}
+    1 & 2 & 3 \\ 
+    4 & 5 & 6 \\ 
+    7 & 8 & 9
+    \end{bmatrix} \implies 
+    \begin{bmatrix}
+    9 & 8 & 7 \\ 
+    6 & 5 & 4 \\ 
+    3 & 2 & 1
+    \end{bmatrix}
+    </script>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Convolution operations (Math)</strong> are commutative, it is because we have <em>flipped the kernel</em>, which refers to the decrease of the index of the kernel while the index of the input is increasing. We ignore the flip as we have abandoned the <em>commutative</em> property.</p>
+</li>
+<li>
+<p>In deep-learning, <strong>convolution (DL)</strong> refers to the mathematical operation <strong>cross-correlation (Math)</strong>, lacking a flip to the kernel. </p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="motivations">Motivations</h2>
+<ul>
+<li>
+<p><strong>Sparse Interactions</strong></p>
+<ul>
+<li>The size of the kernel <span class="arithmatex">\(\ll\)</span> The size of the input, we use small amount of kernels to detect some small features.</li>
+<li>For a <span class="arithmatex">\(m\)</span>-dimensional input and a <span class="arithmatex">\(n\)</span>-dimensional output, a full-connection network have a <span class="arithmatex">\(m\times n\)</span> matrix to store the parameters. However, by limiting the number of connections to <span class="arithmatex">\(k&lt;m\)</span>, the matrix is reduced to <span class="arithmatex">\(k \times n\)</span>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Parameter sharing</strong></p>
+<ul>
+<li>Using same parameters (connected to the kernel elements) to different areas of the input.</li>
+</ul>
+</li>
+<li>
+<p><strong>Equivariant representations</strong></p>
+<ul>
+<li><strong>Equivariance</strong>: <span class="arithmatex">\(f(g(x))=g(f(x))\)</span>, for example translation of certain functions. (Rotations or other operations may not be equivariant)</li>
+</ul>
+</li>
+</ul>
+<h2 id="process">Process</h2>
+<ul>
+<li>The first stage, <strong>convolutional layer</strong> trigger a linear activation response</li>
+<li>The second stage, the <strong>detector stage</strong> using a non-linear activation function to make the previous output (after the linear- activation response) pass through the architecture.</li>
+<li>The third stage, we use the <strong>pooling function</strong> to adjust the input.</li>
+</ul>
+<h3 id="convolution">Convolution</h3>
+<ul>
+<li><strong>Tunnels</strong> : The first number of input tunnels equals to 3, is respectively referring to the R,G,B colors; The output tunnels refer to the number of characteristics that we wish to extract.</li>
+<li><strong>1x1 kernel</strong> is used to control the amount of tunels and to reduce or change the dimensions of inputs. Example of 3 tunnels input transformed into a 2 tunnels output : <img alt="" src="https://zh.d2l.ai/_images/conv-1x1.svg" /></li>
+</ul>
+<h3 id="pooling">Pooling</h3>
+<ul>
+<li>
+<p>The pooling function uses the <em>overall statistical characteristics</em> of the adjacent output at a certain position to replace the output of the network at that location.</p>
+</li>
+<li>
+<p>When the input are slightly translated, the pooling function helps to make the expression of input <strong>invariant</strong>.</p>
+</li>
+<li>
+<p>We care if a certain feature <strong>exists</strong>, but the specific <strong>position is unimportant</strong>.</p>
+</li>
+<li>
+<p>Advantages:</p>
+<ul>
+<li><strong>Produce a same-sized output for different kinds of input</strong></li>
+<li>Because the pooling integrates the feedback of all neighbors, it makes it possible that the pooling unit is <strong>smaller</strong> than the detection unit. We can use the integrated pooling area.</li>
+</ul>
+</li>
+</ul>
+<h3 id="requirements-for-the-task">Requirements for the task</h3>
+<ul>
+<li>
+<p>There is no evident or significant relationship between two locations that are separated by a considerable distance. (Convolution Layer)</p>
+</li>
+<li>
+<p>The task does not requires focus on a specific location. (Pooling Layer)</p>
+</li>
+</ul>
+<h2 id="improvements-from-convolutional-operations-in-math">Improvements from convolutional operations in math</h2>
+<ul>
+<li>
+<p>Differences:</p>
+<ul>
+<li><strong>Multiple convolution processing in the same time</strong>: multiple features to be extracted.</li>
+<li>Input as four dimension: <span class="arithmatex">\((ind,i,j,k)\)</span><ul>
+<li><span class="arithmatex">\((j,k)\)</span> coordinates in the picture</li>
+<li><span class="arithmatex">\(i\)</span> the tunnel (RGB)</li>
+<li><span class="arithmatex">\(ind\)</span> the index in the whole batch</li>
+</ul>
+</li>
+<li>Not necessarily invariant</li>
+</ul>
+</li>
+<li>
+<p><strong>Partially connected networks</strong> = <strong>Unshared Convolution</strong>, partially connected without sharing the same parameters. Used when we are guaranteed that a certain feature will only appear in a certain part of the picture:
+    <script type="math/tex; mode=display">
+    Z_{i,j,k} = \sum_{l,m,n} [V_{l, j+m-1,k+n-1} \; W_{i,j,k,l,m,n}]
+    </script>
+</p>
+<ul>
+<li><span class="arithmatex">\(V_{l,x,y}\)</span>: Input, the value of the position <span class="arithmatex">\((x,y)\)</span> of the input and <span class="arithmatex">\(l\)</span> tunnel.</li>
+<li><span class="arithmatex">\(W_{i,j,k,l,m,n}\)</span>: The weight matrix (6-dimensional), output <span class="arithmatex">\((i,j,k)\)</span>: <span class="arithmatex">\(i\)</span> tunnel and position <span class="arithmatex">\((j,k)\)</span>, input <span class="arithmatex">\((l,m,n)\)</span>: <span class="arithmatex">\(l\)</span> tunnel, <span class="arithmatex">\((m,n)\)</span> the difference of index</li>
+<li><span class="arithmatex">\(Z_{l,x,y}\)</span>: The output, same form with the input</li>
+</ul>
+</li>
+<li>
+<p>Note: <span class="arithmatex">\(-1\)</span> comes from the index problem, modern computer usually begins its index from 0.</p>
+</li>
+<li>
+<p><strong>Fundamental Convolution</strong>:
+    <script type="math/tex; mode=display">
+    Z_{i,j,k}=\sum_{l,m,n}V_{l,j+m-1,k+n-1}\;K_{i,l,m,n}
+    </script>
+</p>
+<ul>
+<li>Kernel: <span class="arithmatex">\(K_{i,j,k,l}\)</span>, the <span class="arithmatex">\(i\)</span> (output) tunnel, connection with the <span class="arithmatex">\(j\)</span> input tunnel, positioned <span class="arithmatex">\((k,l)\)</span>, that is to say, do a linear combination to all the channels of the input.</li>
+</ul>
+</li>
+<li>
+<p><strong>Stride</strong>: If we want to sample the output at an interval of <span class="arithmatex">\(s\)</span> pixels in each direction, we can apply a stride of <span class="arithmatex">\(s\)</span> during the convolution or pooling operation:
+    <script type="math/tex; mode=display">
+    Z_{i,j,k} = c(K,V,s)_{i,j,k} = \sum_{l,m,n}[V_{l, s(j-1)+m,s(k-1)+n}\;K_{i,l,m,n}]
+    </script>
+</p>
+</li>
+<li>
+<p><strong>(Zero) Padding</strong>: The <span class="arithmatex">\(V\)</span> input will decrease its size each layer. </p>
+<ul>
+<li><strong>Valid Convolution</strong>: Only allows access to the position where the entire core can be fully contained in those images. A <span class="arithmatex">\(m\)</span>-width input + A <span class="arithmatex">\(k\)</span>-width kernel will end up with a <span class="arithmatex">\((m-(k-1))\)</span>-width output.</li>
+<li><strong>Same Convolution</strong>: Only enough zero filling is performed to keep the output and input the same size. Problem: The boundary pixels are accessed less time than the other pixels.</li>
+<li><strong>Full Convolution</strong>: Each pixel are accessed <span class="arithmatex">\(k\)</span> times, by padding <span class="arithmatex">\((k-1)\)</span> zeros on each side. The size of the output is now <span class="arithmatex">\(m+2(k-1)-(k-1)=m+k-1\)</span>.</li>
+<li>The best amount of zeros padded is between the amount of zeros required in <strong>valid convolution</strong> and <strong>same convolution</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Tiled Convolution</strong>: 
+    <script type="math/tex; mode=display">
+    Z_{i,j,k} =  \sum_{l,m,n}[V_{l,j-1+m,k-1+n}\;K_{i,l,m,n,j\%t+1,k\%t+1}]
+    </script>
+</p>
+<ul>
+<li><span class="arithmatex">\(t\)</span> is the size of a specific type of kernel. If <span class="arithmatex">\(t\)</span> equals to the width of the output, then it is <strong>partially connected network</strong>.</li>
+<li>The layer cycles in a collection of different kernels.</li>
+</ul>
+</li>
+<li>
+<p>Comparison between <strong>partially connected, tiled convolution, convolution networks</strong>: <img alt="" src="/files/CNN-1.png" /></p>
+</li>
+<li>
+<p>Characteristics Learning: The supervised learning of special characteristics(kernels) are relatively expensive, therefore these methods are applied:</p>
+<ul>
+<li>Random Initialization</li>
+<li>Manually design</li>
+<li>Unsupervised learning</li>
+</ul>
+</li>
+</ul>
+<h2 id="resnet">ResNet</h2>
+<ul>
+<li><strong>Residual Newtorks (ResNet)</strong> is a CNN structure designed to contain hundreds of layers.</li>
+<li>
+<p><strong>Degradation Problem</strong>: Saturation of accuracy when numbers of layers increases, and surprisingly a decline follows.</p>
+</li>
+<li>
+<p>Principle:</p>
+<ul>
+<li><strong>Identity mapping</strong>: By adding an infinite number of layers that <span class="arithmatex">\(f(x)=x\)</span>, will not make the result better, nor leads to a worser result.</li>
+<li>Suppose <span class="arithmatex">\(f\in \mathcal F\)</span>, where <span class="arithmatex">\(f^\star\)</span> is the best function. A larger function set will not necessarily leads to <span class="arithmatex">\(f^\star\)</span>, while a new set containing <span class="arithmatex">\(u = \mathrm{id}\)</span> is theoratically realistic : <img alt="" src="/files/ResNet.png" /></li>
+<li>Therefore, by representing <span class="arithmatex">\(f\)</span> as
+        <script type="math/tex; mode=display">
+        f = (f - \mathrm{id}) + \mathrm{id} \iff f(x) = \mathcal F(x) + x
+        </script>
+        We are now required to learn <span class="arithmatex">\(\mathcal F\)</span> instead of <span class="arithmatex">\(f\)</span>, <span class="arithmatex">\(\mathcal F\to 0\)</span> if there is no update to the model. It is relative more easier to simplify, because we can use the <span class="arithmatex">\(L_2\)</span> norm.</li>
+<li><strong>Residual Block</strong>: <img alt="" src="https://pic1.zhimg.com/80/v2-c1af5bdb8363bd1c2e635cc3a9f96ff8_1440w.webp" /><ul>
+<li>Reducing the amount of parameters by using 1x1 kernel: <img alt="" src="https://pic2.zhimg.com/80/v2-8fb97864957016a6a342f8fad02f06ed_1440w.webp" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Structure: <img alt="" src="https://pic2.zhimg.com/80/v2-c29abdce12af9caa46fb929069715fe9_1440w.webp" /></p>
+<ul>
+<li>Resnet use stride instead of pooling to decrease the dimensions.</li>
+</ul>
+</li>
+<li>A great thanks to <a href="https://zhuanlan.zhihu.com/p/28413039">给妹纸的深度学习教学(4)——同Residual玩耍</a>.</li>
+</ul>
+<h2 id="relationship-with-neural-science">Relationship with Neural Science</h2>
+<ul>
+<li>
+<p>Primary Visual Cortex (V1) and CNN</p>
+<ul>
+<li>
+<p>Similarities:</p>
+<ul>
+<li>
+<p>Spatial mapping: a two-dimensional structure that reflects the image structure of the retina.</p>
+</li>
+<li>
+<p>Simple Cell <span class="arithmatex">\(\iff\)</span> Convolution layer and <strong>detective layer</strong>: A linear function in the receptive field.</p>
+</li>
+<li>
+<p>Complex cell <span class="arithmatex">\(\iff\)</span> Pooling layer: Non-linearity, invariance to slight translations.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Differences:</p>
+<ul>
+<li>
+<p>Attention Mechanism: Special focus on certain parts or areas.</p>
+</li>
+<li>
+<p>Integration with other sensations, such as sounds and smells.</p>
+</li>
+<li>
+<p>Besides object detection, visual mechanisms also includes comprehension of all the scenes, including relationships between different objects.</p>
+</li>
+<li>
+<p>Feedbacks from subsequent layers.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>How to train CNNs? Neural scientists haven't given an effective response.</p>
+</li>
+<li>
+<p><strong>Reverse Correlation</strong>: Impossible to calculate the weight of certain neurons, therefore replaced by detecting their responses, thus obtaining the approximate weight.</p>
+<ul>
+<li>
+<p><strong>Gabor Function</strong>: weight of a certain pixel in a 2d figure: 
+    <script type="math/tex; mode=display">
+    s(I)= \sum_x\sum_yw(x,y) I(x,y)
+    </script>
+</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(s(I)\)</span> response to pixel with coordinates <span class="arithmatex">\(I(x,y)\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(w(x,y)\)</span> defined as
+    <script type="math/tex; mode=display">
+    w(x,y,\alpha,\beta_x,\beta_y, f,\phi,x_0,y_0,\tau) = \alpha \exp(-\beta x'^2-\beta_yy'^2) \cos (fx'+\phi)
+    </script>
+    where
+    <script type="math/tex; mode=display">
+    x' = (x-x_0)\cos(\tau)+(y-y_0)\sin(\tau)
+    </script>
+    and
+    <script type="math/tex; mode=display">
+    y' = (y-y_0)\sin(\tau)+(y-y_0)\cos(\tau)
+    </script>
+</p>
+<ul>
+<li><span class="arithmatex">\(\exp\)</span> term limits the response only to these near <span class="arithmatex">\((x_0,y_0)\)</span></li>
+<li><span class="arithmatex">\(\cos\)</span> term controls how the neuron will response to different brightness of the light along <span class="arithmatex">\(x'\)</span> axe. Simple cells are excited when the phase of the image light wave matches the phase of the cell. <span class="arithmatex">\(\phi\)</span> can control the phase.</li>
+<li><span class="arithmatex">\((x_0,y_0,\tau)\)</span> together define the coordinate system by translation and rotation.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>When human beings staring at a certain object &lt;100ms, information flows from LGN, V1, V2 to IT, where IT has been proved to be semblable to CNNs.</p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ol>
+<li>
+<p><a href="https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53">A Comprehensive Guide to Convolutional Neural Networks — the ELI5 way</a></p>
+</li>
+<li>
+<p><a href="https://windmissing.github.io/Bible-DeepLearning/Chapter9/1Convolution.html">Notes for Deep Learning, by GitHub user windmissing</a></p>
+</li>
+<li>
+<p><a href="https://www.cnblogs.com/LittleHann/p/6792511.html">卷积思想理解、Convolutional Neural Network（CNN）卷积神经网络初探</a></p>
+</li>
+</ol>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/Languisher"  target="_blank" rel="noopener">Brandon Lin</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Languisher" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "naviagation.sections", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.407015b8.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,13 @@
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+li,
+p {
+  line-height: 1.5;
+  font-size: 14px;
+}
