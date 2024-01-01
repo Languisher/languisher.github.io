@@ -1,0 +1,3 @@
+\beamer@sectionintoc {1}{Electric Fields in Matter}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Polarization}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{The field of a polarized object}{10}{0}{1}
