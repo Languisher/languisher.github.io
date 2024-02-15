@@ -13,6 +13,7 @@ buildFuture: false
 buildExpired: false
 
 googleAnalytics:  # 谷歌统计
+  ID: G-M9M123VK72
 # Copyright: Sulv
 
 paginate: 15    # 首页每页显示的文章数
@@ -70,7 +71,7 @@ outputs:
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   description: ""
-  author: Sulv
+  author: Languisher
   # author: ["Me", "You"] # multiple authors
 
   defaultTheme: auto  # defaultTheme: light or  dark
@@ -100,43 +101,43 @@ params:
     title: (〃'▽'〃)
     subtitle:
     # subtitle: "🧨学而时习之，不亦说乎？有朋自远方来，不亦乐乎？<br/>👇联系方式"
-    imageUrl: "img/Q.gif"
+    imageUrl: "https://github.com/Languisher.png"
     imageTitle:
     imageWidth: 150
     imageHeight: 150
     buttons:
-      - name: 🧱 建站
-        url: posts/blog
-      - name: 👨🏻‍💻 技术
-        url: posts/tech
-      - name: 📕 阅读
-        url: posts/read
+      - name: 计算机科学
+        url: posts/cs
+      - name: 计算机工程
+        url: posts/ce
       - name: 🏖 生活
         url: posts/life
+      - name: 🧱 建站
+        url: posts/blog
 
   socialIcons:
     - name: github
-      url: "https://github.com/xyming108"
-    - name: twitter
-      url: "img/twitter.png"
-    - name: facebook
-      url: "https://www.facebook.com/profile.php?id=100027782410997"
-    - name: instagram
-      url: "img/instagram.png"
-    - name: QQ
-      url: "img/qq.png"
-    - name: WeChat
-      url: "img/wechat.png"
-    - name: bilibili
-      url: "https://space.bilibili.com/234461224"
+      url: "https://github.com/Languisher"
+    # - name: twitter
+      #  url: "Q.gif"
+    # - name: facebook
+      #  url: "Q.gif"
+    # - name: instagram
+      # url: "Q.gif"
+    # - name: QQ
+      # url: "Q.gif"
+    # - name: WeChat
+      # url: "Q.gif"
+    # - name: bilibili
+      # url: "Q.gif"
     - name: email
-      url: "mailto:1931559710@qq.com"
-    - name: RSS
-      url: "index.xml"
+      url: "mailto:lns_brandon@qq.com"
+    # - name: RSS
+      # url: "Q.gif"
 
   label: # 左上角图标
-    text: "Sulv's Blog"
-    icon: "img/Q.gif"
+    text: "Languisher's Blog"
+    icon: "https://github.com/Languisher.png"
     iconHeight: 35
 
   analytics:
@@ -165,22 +166,22 @@ params:
     minMatchCharLength: 0
     keys: [ "title", "permalink", "summary" ]
 
-  StartYear: 2020 # 底部开始年份
-  FilingNo: 填写自己的备案号 # 底部备案号
-  PublicSecurityIconLink: 填自己的公安图标链接 # 填自己的公安图标链接,可用绝对路径，相对路径如 img/beian.png
-  PublicNetworkSecurity: 填自己的公网安备 # 底部公网安备号
+  StartYear: 2024 # 底部开始年份
+  # FilingNo: 填写自己的备案号 # 底部备案号
+  # PublicSecurityIconLink: 填自己的公安图标链接 # 填自己的公安图标链接,可用绝对路径，相对路径如 img/beian.png
+  # PublicNetworkSecurity: 填自己的公网安备 # 底部公网安备号
 
-  Reward: true #打赏是否开启
+  Reward: false #打赏是否开启
   # 打赏微信图片地址，
   # 可用绝对和相对地址，相对地址的图片需放在static/img下，
   # 填写格式为img/wechat_pay.png
-  WechatPay: img/wechat_pay.png
-  Alipay: img/alipay.png #打赏支付宝图片地址
+  WechatPay: # img/wechat_pay.png
+  Alipay: # img/alipay.png #打赏支付宝图片地址
 
   # twikoo评论
   twikoo:
     version: 1.5.8 # 填写twikoo版本号
-    id:  # 填写自己的twikoo id
+    id: https://twikoo-api-nine-snowy.vercel.app # 填写自己的twikoo id
     region:  # 环境地域，默认为 ap-shanghai，如果您的环境地域不是上海，需传此参数，请看twikoo官方文档
 
 taxonomies:
