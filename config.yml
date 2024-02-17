@@ -51,7 +51,7 @@ menu:
     - identifier: archives
       name: ⏱️ 时间轴
       url: archives/
-      weight: 20
+      weight: 25
     - identifier: about
       name: 🙋🏻‍♂️ 关于
       url: about
@@ -110,10 +110,8 @@ params:
         url: posts/cs
       - name: 计算机工程
         url: posts/ce
-      - name: 🏖 生活
+      - name: 生活
         url: posts/life
-      - name: 🧱 建站
-        url: posts/blog
 
   socialIcons:
     - name: github

@@ -26,3 +26,9 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+
+{{ if (eq $.Page.Params.math "katex") }}
+  {{ partial "helpers/katex.html" . }}
+{{ else if (eq $.Page.Params.math "mathjax") }}
+  {{ partial "helpers/mathjax.html" . }}
+{{ end }}
