@@ -98,10 +98,10 @@ params:
 
   profileMode:
     enabled: true
-    title: (〃'▽'〃)
-    subtitle:
+    title: 林德懿
+    subtitle: 长风破浪会有时，直挂云帆济沧海。
     # subtitle: "🧨学而时习之，不亦说乎？有朋自远方来，不亦乐乎？<br/>👇联系方式"
-    imageUrl: "https://github.com/Languisher.png"
+    imageUrl: "IMG_5658.JPG"
     imageTitle:
     imageWidth: 150
     imageHeight: 150
@@ -112,10 +112,14 @@ params:
         url: posts/ce
       - name: 生活
         url: posts/life
+      - name: 博客
+        url: posts/blog
+      - name: 工作流和效率
+        url: posts/workflow
 
   socialIcons:
     - name: github
-      url: "https://github.com/Languisher"
+      url: "IMG_5658.JPG"
     # - name: twitter
       #  url: "Q.gif"
     # - name: facebook
@@ -135,7 +139,7 @@ params:
 
   label: # 左上角图标
     text: "Languisher's Blog"
-    icon: "https://github.com/Languisher.png"
+    icon: "IMG_5658.JPG"
     iconHeight: 35
 
   analytics:
