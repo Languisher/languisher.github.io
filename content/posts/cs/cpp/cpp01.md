@@ -1,7 +1,7 @@
 ---
-title: "C++ 语言基础"
+title: "C++ 基础（一）：基本类型和复合类型"
 date: 2024-02-18T17:25:18+08:00
-lastmod: 2024-02-18T17:25:18+08:00
+lastmod: 2024-02-20T15:00:00+08:00
 author: ["Languisher"]
 keywords: 
 - 
