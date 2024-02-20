@@ -10,7 +10,7 @@ categories: # 没有分类界面可以不填写
 tags: # 标签
 - C++
 description: ""
-weight:
+weight: 1
 slug: ""
 draft: false # 是否为草稿
 comments: true # 本页面是否显示评论

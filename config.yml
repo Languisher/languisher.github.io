@@ -112,10 +112,10 @@ params:
         url: posts/ce
       - name: 生活
         url: posts/life
-      - name: 博客
-        url: posts/blog
       - name: 工作流和效率
         url: posts/workflow
+      - name: 博客
+        url: posts/blog
 
   socialIcons:
     - name: github
