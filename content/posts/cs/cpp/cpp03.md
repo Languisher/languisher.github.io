@@ -29,6 +29,7 @@ cover:
     relative: false
 ---
 
+
 类的基本思想是 **数据抽象 (data abstraction)** 和 **封装 (encapsulation)**，而 **数据抽象** 是一种依赖于 **接口 (interface)** 和 **实现 (implementation)** 分离的编程技术。
 
 ## 自定义数据结构
@@ -75,6 +76,10 @@ struct Sales_data {
 
 **成员函数通过名为 `this` 额外的隐式参数访问类内的对象**，任何对类成员的直接访问都看作是 `this` 的隐式应用。`this` 本质上是一个常量指针，在 `Sales_data` 类中其类型即 `Sales_data *const`.
 
+**当类对象是常量对象时**，需要在成员函数的参数列表后面加 `const`，表示 `this` 是指向常量的指针。像这样使用 `const` 对象的成员函数被称为 **常量成员函数 (const member function)**. 此时 `this` 是一个指向常量的常量指针，其类型是 `const Sales_data *const` ：
+
+⚠️常量对象，以及常量对象的引用或指针都只能调用常量成员参数。
+
 ```cpp
 struct Sales_data {
 	std::string isbn() const { return bookNo; }
@@ -85,20 +90,15 @@ struct Sales_data {
 total.isbn();
 Sales_data::isbn(&total); // 传入 total 地址
 // 两者等价
-```
 
-
-**注意类对象是否是常量对象。** 若是，则需要在参数列表后面加 `const`，表示 `this` 是指向常量的指针，此时 `this` 是一个指向常量的常量指针，其类型是 `const Sales_data *const` ：
-
-⚠️常量对象，以及常量对象的引用或指针都只能调用常量成员参数。
-
-```cpp
 struct Sales_data {
 	double avg_price() const; // 注意此处参数列表后面的 const
 }
 
 std::string Sales_data::isbn(const Sales_data *const this) { return this->isbn} // 说明隐式的 this 如何运作，注意不能这么写，因为不能显示地定义 this 指针。
 ```
+
+
 
 #### 定义在函数外部
 
@@ -172,7 +172,7 @@ Sales_data::Sales_data(std::istream &is)
 
 ## 访问控制和封装
 
-### 访问控制
+### 访问控制：访问说明符
 
 之前类用户可以直达 `Sales_data` 对象的内部并且控制它的具体实现细节。现在我们想要隐藏部分信息，可以利用 C++ 语言的 **访问说明符 (access specifiers)**:
 
@@ -191,11 +191,14 @@ private:
 }
 ```
 
-### 分享信息
+### 分享信息：友元
 
 类允许其他类或函数访问它的非公有成员，方法是令其他类或函数称为其 **友元 (friend)**.
 
-注意：友元声明并非函数声明，只是指定访问的权限。
+注意：
+- 友元声明并非函数声明，只是指定访问的权限。
+- 友元不具有传递性。若 A 是 B 的友元，A 的友元并不拥有访问 B 的特权。
+- 如果一个类想把一组重载函数声明为其友元，它需要对这组函数的每一个进行声明。
 
 ```cpp
 class Sales_data {
@@ -210,4 +213,47 @@ private:
 Sales_data add(const Sales_data&, const Sales_data&); // 仍需函数声明
 ```
 
+## 类与 const
 
+### 常量成员函数
+
+见 [定义在函数内部](#定义在函数内部).
+### 可变数据成员
+
+我们希望类对象的某一个变量始终可以被修改，无论类对象是常量对象或者在 const 成员函数内。我们在变量声明时使用 `mutable` 将其声明为 **可变数据成员 (mutable data member)** 来做到这点。
+
+根据定义，可变数据成员永远不是 `const`.
+
+```cpp
+class Screen {
+public:
+	void some_member() const; // const 成员函数
+private:
+	mutable size_t access_str; // 即使在 const 对象中也能修改
+};
+
+void Screen::some_member() const
+{
+	++access_str; // 正确：可以修改
+}
+```
+
+### 返回 `*this` 时，基于 const 的重载
+
+举个例子，`myScreen.display(cout).set('*');` 代码中我们的 `display` 成员函数因为不改变 `myScreen` 类对象，被设置为 `const` 成员函数，当其以引用形式返回 `*this` 时，它的返回类型是常量引用，自然我们无权对常量类型的类进行设置，产生报错。
+
+此时需要基于 const 的重载：
+
+```cpp
+class Screen {
+public:
+	// 根据对象是否是 const 重载了 display 函数
+	Screen &display(std::ostream &os) { ...; return *this; }
+	const Screen &display(std::ostream &os) const { ...; return *this; }
+}
+
+Screen myScreen;
+const Screen blank;
+myScreen.set('#').display(cout); // 调用 const 版本
+blank.display(cout); // 调用 const 版本
+```

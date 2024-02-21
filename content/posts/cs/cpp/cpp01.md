@@ -1,7 +1,7 @@
 ---
 title: "C++ 基础（一）：基本类型和复合类型"
 date: 2024-02-18T17:25:18+08:00
-lastmod: 2024-02-20T15:00:00+08:00
+lastmod: 2024-02-21T23:48:00+08:00
 author: ["Languisher"]
 keywords: 
 - 
@@ -120,14 +120,17 @@ const int *const currrErr = &errNumb; // 指向常量的常量指针，同时满
 
 对于任意对象而言，**顶层 const** 指其本身（比如指针本身）是常量，**底层 const** 指其基本类型（比如指针指向的对象）是常量。
 
-**拷贝需要注意底层 const 限制**：当拷贝时，顶层 const 几乎不影响操作，但底层 const 限制不能忽视——非常量可以转化为常量，反之不行。
+**拷贝需要注意底层 const 限制**：当拷贝时，顶层 const 几乎不影响操作，但底层 const 限制不能忽视——非常量可以赋值为常量，反之不行。
 
+举例说明：
 ```cpp
-int i = 0, j = 0;  
-int *const p1 = &i; // 顶层 const：不能改变 p1 的值
-const int *p2 = &i; // 底层 const：其基本类型，即所指的对象是常量
-int *p = p2; // 错误，注意拷贝时的性质，p2 有底层 const 限制而 p 没有  
-p2 = &j; // 正确，反之可行
+int i = 42;
+const int *cp = &i;
+const int &r = i;
+const int &r2 = 42;
+int *p = cp; // 错误，cp 有底层 const，不能赋值给非常量。
+int &r3 = r; // 错误，理由同上。
+int &r4 = 42; // 错误，不能用字面值初始化非常值引用。
 ```
 
 ### 常量表达式和 constexpr

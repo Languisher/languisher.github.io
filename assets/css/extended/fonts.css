@@ -7,3 +7,19 @@
     font-family: "NeverMindHand-Regular";
     src: url("/fonts/NeverMindHand-Regular.ttf") format("truetype");
 }
+
+@font-face {
+    font-family: "PingFangSC-Regular";
+    src: url("PingFang.ttc") format("truetype");
+    font-size: 1rem;
+}
+
+@font-face {
+    font-family: "Helvetica";
+    src: url("Helvetica.ttc") format("truetype");
+    font-size: 1rem;
+}
+
+.post-content {
+  font-family: PingFangSC-Regular, Helvetica
+}
