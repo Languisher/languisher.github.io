@@ -9,17 +9,16 @@
 }
 
 @font-face {
-    font-family: "PingFangSC-Regular";
-    src: url("PingFang.ttc") format("truetype");
-    font-size: 1rem;
+    font-family: "pingfangsc-regular";
+    src: url("pingfangsc-regular.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Helvetica";
     src: url("Helvetica.ttc") format("truetype");
-    font-size: 1rem;
 }
 
 .post-content {
-  font-family: PingFangSC-Regular, Helvetica
+  font-family: PingFangSC-Regular; Helvetica;
+  font-size: 0.9em;
 }

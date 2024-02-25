@@ -110,6 +110,8 @@ params:
         url: posts/cs
       - name: 计算机工程
         url: posts/ce
+      - name: 数学
+        url: posts/math
       - name: 生活
         url: posts/life
       - name: 工作流和效率
@@ -138,7 +140,7 @@ params:
       # url: "Q.gif"
 
   label: # 左上角图标
-    text: "Languisher's Blog"
+    text: "Languisher Lin"
     icon: "IMG_5658.JPG"
     iconHeight: 35
 

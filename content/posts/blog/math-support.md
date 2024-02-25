@@ -1,7 +1,7 @@
 ---
-title: "Hugo 博客数学支持"
+title: "Hugo 博客配置"
 date: 2024-02-18T16:39:39+08:00
-lastmod: 2024-02-18T16:39:39+08:00
+lastmod: 2024-02-22T16:43:39+08:00
 author: ["Languisher"]
 keywords: 
 - 
@@ -29,9 +29,19 @@ cover:
     relative: false
 ---
 
-## 为 Hugo 博客添加数学支持的步骤
+本文简单介绍了一些我个人对于 Hugo-Papermod 博客自定义配置内容。
 
-为 Hugo 博客添加数学支持的步骤：
+## 字体配置
+
+字体我应用了 [Helvetica](https://en.wikipedia.org/wiki/Helvetica) 和 PingFangSC-Regular, 均是苹果官方使用的字体，后者可以前往[GitHub 链接](https://github.com/Pudge1996/SF-Pro-Zh?tab=readme-ov-file)下载[^2]。
+
+
+
+## 数学支持
+
+### 为 Hugo 博客添加数学支持的步骤
+
+为 Hugo 博客添加数学支持的步骤[^1]：
 
 1. 创建 `layouts/partials/helpers/katex.html` 文件，其内容是：
 
@@ -114,9 +124,14 @@ math: katex
 ---
 ```
 
+### 在 Hugo 博客中使用数学公式的注意事项
 
-## 参考链接
+与大部分基于 Markdown 渲染成静态网站一样，也是源于 Mathjax 的“特性”，数学公式中的换行需要尤其注意，例如：`\,` 需要手动改为 `\\,`，`\\` 需要手动改为 `\\\\` 等等。
 
-[Writing math with Hugo](https://misha.brukman.net/blog/2022/04/writing-math-with-hugo/)
+## 无法即时刷新的问题
 
+目前，静态网站实现会出现 tag 和搜索无法正确刷新的问题，可以暂时通过清除 Cookies 解决；更好地解决方法我还没有尝试。
+
+[^1]: [Writing math with Hugo](https://misha.brukman.net/blog/2022/04/writing-math-with-hugo/)
+[^2]: [SF Pro SC 是什么字体？](https://pudge1996.medium.com/what-is-sf-pro-sc-b903b828bb50#ce8a)
 
