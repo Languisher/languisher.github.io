@@ -33,7 +33,6 @@ math: mathjax
 
 我们遵守的缩写：
 - var = variable aléatoire réelle 实随机变量
-	- varac = variable aléatoire réelle absolument continue 绝对连续型（实）随机变量
 
 ## 分布函数
 
