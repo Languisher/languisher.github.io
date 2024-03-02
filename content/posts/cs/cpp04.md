@@ -1,5 +1,5 @@
 ---
-title: "C++ 基础（四）：指针"
+title: "C++ 基础（4）：指针"
 date: 2024-03-02T00:42:44+08:00
 lastmod: 2024-03-02T00:42:44+08:00
 author: ["Languisher"]
@@ -8,7 +8,7 @@ keywords:
 categories: # 没有分类界面可以不填写
 - 
 tags: # 标签
-- 
+- C++
 description: ""
 weight:
 slug: ""

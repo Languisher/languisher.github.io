@@ -1,16 +1,13 @@
 ---
-title: "计算机组成原理（一）：计算机性能"
+title: "计算机组成原理（1）：计算机性能"
 date: 2024-02-21T00:49:03+08:00
 lastmod: 2024-02-21T00:49:03+08:00
 author: ["Languisher"]
 keywords: 
 - 
 categories: # 没有分类界面可以不填写
-- CS 
-    - CSAPP
-        - a?
 tags: # 标签
-- 计算机系统
+- 计算机组成原理
 description: ""
 weight:
 slug: ""
