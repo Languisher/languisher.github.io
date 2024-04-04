@@ -1,14 +1,14 @@
 ---
-title: "【杭州】午潮山"
-date: 2024-02-15T23:20:59+08:00
-lastmod: 2024-02-15T23:20:59+08:00
+title: "FIR/IIR 滤波器设计"
+date: 2024-04-05T00:04:17+08:00
+lastmod: 2024-04-05T00:04:17+08:00
 author: ["Languisher"]
 keywords: 
 - 
 categories: # 没有分类界面可以不填写
 - 
 tags: # 标签
-- 生活
+- 
 description: ""
 weight:
 slug: ""
@@ -22,14 +22,13 @@ hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
 disableShare: true # 底部不显示分享栏
 showbreadcrumbs: true #顶部显示路径
 cover:
-    image: "posts/life/IMG_1222.HEIC" #图片路径例如：posts/tech/123/123.png
+    image: "" #图片路径例如：posts/tech/123/123.png
     zoom: # 图片大小，例如填写 50% 表示原图像的一半大小
     caption: "" #图片底部描述
     alt: ""
     relative: false
 ---
 
-拍摄于 2023 年 4 月 30 日，于杭州市午潮山国家公园。
 
 
-
+[见文章](fir-iir.pdf)
