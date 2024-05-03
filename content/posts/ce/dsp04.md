@@ -29,6 +29,6 @@ cover:
     relative: false
 ---
 
+关于 FIR/IIR 滤波器的设计，以下 PDF 文件是我关于相关内容的理解。
 
-
-[见文章](fir-iir.pdf)
+笔记文件：[FIR/IIR Filter Design](fir-iir.pdf)
