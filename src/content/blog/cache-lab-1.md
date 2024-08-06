@@ -1,9 +1,9 @@
 ---
-title: "Cache Lab (1) 前置知识"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-pubDate: "Sep 10 2022"
+title: "Cache Lab 1 前置知识"
+description: "本文主要介绍计算机内存的结构，参考 CS:APP 6.2-6.3 部分内容。"
+pubDate: "Aug 6 2024"
 heroImage: "/post_img.webp"
-tags: ["tokio"]
+tags: ["CS:APP"]
 ---
 
 本文主要介绍计算机内存的结构，参考 CS:APP 6.2-6.3 部分内容。
