@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/cv/TimeLine.astro";
+---
+
+<BaseLayout title="Resume" sideBarActiveItemID="cv">
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Profile</div>
+  </div>
+
+  <div class="mb-10 text-justify">
+    Currently studying at Shanghai Jiao Tong University, I am a member of the AISIG group, specializing in distributed computing and serverless computing.
+  </div>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Education</div>
+  </div>
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="Hangzhou Foreign Language School"
+      subtitle="High School, 2018 to 2021 in Hangzhou, China"
+    />
+    <TimeLineElement
+      title="Shanghai Jiao Tong University"
+      subtitle="Undergraduate, 2021 to 2024 in Shanghai, China"
+    />
+  </div>
+</BaseLayout>
