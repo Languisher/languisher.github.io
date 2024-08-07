@@ -2,7 +2,7 @@
 title: "Cache Lab 1 前置知识"
 description: "本文主要介绍计算机内存的结构，参考 CS:APP 6.2-6.3 部分内容。"
 pubDate: "Aug 6 2024"
-heroImage: "/post_img.webp"
+heroImage: "https://csapp.cs.cmu.edu/3e/images/csapp3e-cover.jpg"
 tags: ["CS:APP"]
 ---
 

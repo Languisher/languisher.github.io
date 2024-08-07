@@ -1,10 +1,10 @@
 ---
-title: "博客快速部署"
+title: "Blog 快速部署"
 description: "本文主要介绍如何快速部署一个像本站的个人博客。"
 pubDate: "Aug 7 2024"
-heroImage: "/post_img.webp"
-tags: ["Blog"]
+tags: ["How-to"]
 ---
+
 
 如何快速部署一个像本站的个人博客：
 1. 前置要求：Xnix 机器，我个人用的 Macbook
@@ -17,3 +17,4 @@ tags: ["Blog"]
 可能遇到的问题：
 - `npm` 网络问题：参考这篇文章修改代理 [npm查看源地址以及更换源地址](https://blog.csdn.net/weixin_37861326/article/details/107064092)
 - Astrofy 模版 Workflow 无法正常运行：替换成官网  [Deploy your Astro Site to GitHub Pages](https://docs.astro.build/en/guides/deploy/github/) 中的代码
+- 文章不能使用纯中文标题：暂时没有找到解决方法，我的替代方法是英文开头+一点中文（如果这种中英混杂的方式让你不舒服在此抱歉）
